@@ -8,6 +8,15 @@ public class Main {
         myLinkedList.getHead();// Prints the Head of linkedList
         myLinkedList.getTail();// Prints the Tail of linkedList
         myLinkedList.getLength();// Prints the length of linkedList
-        myLinkedList.printList();// Prints the linkedList
+        System.out.println("Printing List");
+        myLinkedList.printList();// Prints the linkedList 4 and 6
+        System.out.println("Removing last");
+        System.out.println(myLinkedList.removeLast().value); // removed the last 6
+        System.out.println(myLinkedList.removeLast().value); // removed the last which has only one 4
+        System.out.println(myLinkedList.removeLast()); /*
+                                                        * after removing the last the linkedList becomes null, hence
+                                                        * null.value will cause NullPointer exception, no .value is
+                                                        * removed it will print null
+                                                        */
     }
 }

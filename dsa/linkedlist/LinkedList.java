@@ -62,4 +62,25 @@ public class LinkedList {
         length++;
     }
 
+    // removeLast method
+    public Node removeLast() {
+        if (length == 0)
+            return null; // if LinkedList is null
+        Node temp = head;
+        Node pre = head;
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
+        }
+        tail = pre;
+        tail.next = null; // If LinkedList has more than 1 and length becomes 1
+        length--;
+        if (length == 0) { // If LinkedList has one node and after removeLast become 0, so make head and
+                           // tail as null asit removed the only Node.
+            head = null;
+            tail = null;
+        }
+        return temp;
+    }
+
 }
