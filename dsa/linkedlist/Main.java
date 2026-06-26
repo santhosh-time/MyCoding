@@ -28,5 +28,14 @@ public class Main {
         System.out.println(myLinkedList2.removeFirst().value);// removing the first of remaining
         System.out.println(myLinkedList2.removeFirst().value);// removing the first of remaining
         System.out.println(myLinkedList2.removeFirst());// length became zero so returning null
+
+        System.out.println("get by index");
+        LinkedList myLinkedList3 = new LinkedList(0);
+        myLinkedList3.append(1);
+        myLinkedList3.append(2);
+        myLinkedList3.append(3);
+        System.err.println(myLinkedList3.get(2).value + "\n");// getting the value of node at index 2
+        myLinkedList3.printList();
+
     }
 }
