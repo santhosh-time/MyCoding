@@ -153,4 +153,21 @@ public class LinkedList {
         return true;
     }
 
+    // remove node by index
+    public Node remove(int index) {
+        if (index < 0 || index >= length)
+            return null; // Not in index range
+        if (index == 0)
+            return removeFirst(); // index 0 Means removeFirst
+        if (index == length - 1)
+            return removeLast(); // index last means remove last
+        Node prev = get(index - 1); // To remove at the index get the prev node, because we cannot trace with the
+                                    // next node
+        Node temp = prev.next; // to prevent from O(n)
+        prev.next = temp.next; // assign the previous pointer to the temp next, as we are removing the temp
+        temp.next = null; // then assign temp next to null, so it will ge out of linked list
+        length--;
+        return temp;
+    }
+
 }

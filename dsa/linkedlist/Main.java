@@ -44,5 +44,9 @@ public class Main {
         myLinkedList3.insert(3, 4);// At index 3, I want to insert node with value 4
         System.out.println("insert Method" + "\n");
         myLinkedList3.printList();
+        System.out.println("remove Method" + "\n");
+        System.out.println(myLinkedList3.remove(4).value); // remove the value at 4th index that is 5
+        System.out.println("removed" + "\n");
+        myLinkedList3.printList();
     }
 }
