@@ -170,4 +170,20 @@ public class LinkedList {
         return temp;
     }
 
+    // Reverse the List
+    public void reverse() {
+        Node temp = head; // let node temp is head
+        head = tail; // move the head to tail
+        tail = temp; // bring the tail to temp
+        Node after = temp.next; // get a node after and before the temp
+        Node before = null;
+        for (int i = 0; i < length; i++) { // we will reverse the pointers now
+            after = temp.next; // as already tail is temp, we will move the node after to temp.next
+            temp.next = before; // move the pointer to before which here reverse the pointer
+            before = temp; // make before as temp
+            temp = after; // Then temp as after then the loop continues untill after becomes null and
+                          // before also
+        }
+    }
+
 }
