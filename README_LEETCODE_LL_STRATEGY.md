@@ -1311,3 +1311,411 @@ Interviewers often ask for both solutions to evaluate your understanding of **ti
 * This is one of the classic Linked List interview questions for understanding optimization and pointer manipulation.
 
 ---
+# 🚀 MyCoding - Data Structures & Algorithms in Java
+
+# 🧠 Strategy 5: Binary to Decimal
+
+Converting a binary number stored in a **Linked List** into its decimal equivalent is a common interview problem. It helps reinforce concepts of **Linked Lists**, **binary numbers**, and **iterative computation**.
+
+---
+
+# 📖 Problem Statement
+
+You are given a singly linked list where each node contains either **0** or **1**, representing a binary number.
+
+Your task is to implement the **`binaryToDecimal()`** method that converts this binary number into its decimal equivalent.
+
+Each node represents one binary digit, with the **head** containing the **most significant bit (MSB)**.
+
+---
+
+# 📌 Method Signature
+
+```java
+public int binaryToDecimal()
+```
+
+---
+
+# 💡 How Binary to Decimal Conversion Works
+
+In a binary number:
+
+* The rightmost digit represents **2⁰**
+* The next digit represents **2¹**
+* Then **2²**
+* Then **2³**
+* ...and so on.
+
+Instead of calculating powers of 2 manually, we can use a much simpler approach.
+
+For every binary digit:
+
+1. Multiply the current decimal value by **2**.
+2. Add the current binary digit.
+
+This efficiently builds the decimal number while traversing the linked list only once.
+
+---
+
+# 🖼 Visualization
+
+## Example 1
+
+Binary Number
+
+```text
+1 → 0 → 1
+```
+
+Represents
+
+```text
+101₂
+```
+
+Decimal Value
+
+```text
+5
+```
+
+---
+
+## Step-by-Step Execution
+
+Initialize
+
+```text
+num = 0
+```
+
+Visit First Node
+
+```text
+num = 0 × 2 + 1
+
+num = 1
+```
+
+↓
+
+Visit Second Node
+
+```text
+num = 1 × 2 + 0
+
+num = 2
+```
+
+↓
+
+Visit Third Node
+
+```text
+num = 2 × 2 + 1
+
+num = 5
+```
+
+Return
+
+```text
+5
+```
+
+---
+
+# 🖼 Another Example
+
+Binary Linked List
+
+```text
+Head
+
+↓
+
+1 → 1 → 0 → 1
+```
+
+Represents
+
+```text
+1101₂
+```
+
+Calculation
+
+```text
+num = 0
+
+↓
+
+0 × 2 + 1 = 1
+
+↓
+
+1 × 2 + 1 = 3
+
+↓
+
+3 × 2 + 0 = 6
+
+↓
+
+6 × 2 + 1 = 13
+```
+
+Return
+
+```text
+13
+```
+
+---
+
+# 💻 Java Solution
+
+```java
+public int binaryToDecimal() {
+
+    int num = 0;
+
+    Node current = head;
+
+    while (current != null) {
+
+        num = num * 2 + current.value;
+
+        current = current.next;
+
+    }
+
+    return num;
+}
+```
+
+---
+
+# ⚙️ Algorithm
+
+1. Initialize `num` to **0**.
+2. Start from the head of the linked list.
+3. For every node:
+
+   * Multiply `num` by **2**.
+   * Add the current node's value.
+4. Move to the next node.
+5. Continue until the end of the linked list.
+6. Return `num`.
+
+---
+
+# 📊 Dry Run
+
+Suppose the linked list is
+
+```text
+1 → 0 → 1 → 1
+```
+
+Initial
+
+```text
+num = 0
+```
+
+Node = 1
+
+```text
+num = 0 × 2 + 1 = 1
+```
+
+↓
+
+Node = 0
+
+```text
+num = 1 × 2 + 0 = 2
+```
+
+↓
+
+Node = 1
+
+```text
+num = 2 × 2 + 1 = 5
+```
+
+↓
+
+Node = 1
+
+```text
+num = 5 × 2 + 1 = 11
+```
+
+Result
+
+```text
+1011₂ = 11₁₀
+```
+
+---
+
+# ⚠️ Edge Cases
+
+### Empty Linked List
+
+```text
+Head → null
+```
+
+Returns
+
+```text
+0
+```
+
+---
+
+### Single Node (0)
+
+```text
+0
+```
+
+Returns
+
+```text
+0
+```
+
+---
+
+### Single Node (1)
+
+```text
+1
+```
+
+Returns
+
+```text
+1
+```
+
+---
+
+### All Zeros
+
+```text
+0 → 0 → 0 → 0
+```
+
+Returns
+
+```text
+0
+```
+
+---
+
+### All Ones
+
+```text
+1 → 1 → 1
+```
+
+Calculation
+
+```text
+111₂ = 7₁₀
+```
+
+Returns
+
+```text
+7
+```
+
+---
+
+# ⏱ Time Complexity
+
+```text
+O(n)
+```
+
+Each node is visited exactly once.
+
+---
+
+# 💾 Space Complexity
+
+```text
+O(1)
+```
+
+Only one integer variable and one pointer are used.
+
+---
+
+# 📌 Why This Approach?
+
+A beginner might try to:
+
+* Count the total number of nodes.
+* Calculate powers of **2** for every position.
+* Sum each value separately.
+
+While this works, it is more complicated.
+
+The formula:
+
+```text
+num = num × 2 + current.value
+```
+
+is simpler, more efficient, and naturally simulates how binary numbers are built.
+
+---
+
+# 📊 Complexity Summary
+
+| Operation        | Complexity |
+| ---------------- | ---------- |
+| Time Complexity  | **O(n)**   |
+| Space Complexity | **O(1)**   |
+
+---
+
+# 📌 Interview Tip
+
+Whenever an interviewer asks questions like:
+
+* Convert Binary Linked List to Integer.
+* Convert Binary Number to Decimal.
+* Evaluate a Binary Linked List.
+* Interpret a Linked List as a Binary Number.
+
+Think about this formula:
+
+```text
+num = num × 2 + current.value
+```
+
+It is the most efficient solution and avoids unnecessary calculations using powers of 2.
+
+---
+
+# 🎓 Key Takeaways
+
+* Each node represents a binary digit (**0** or **1**).
+* Traverse the linked list only once.
+* Multiply the current decimal value by **2** before processing the next digit.
+* Add the current binary digit to the result.
+* The algorithm runs in **O(n)** time with **O(1)** extra space.
+
+---
+
