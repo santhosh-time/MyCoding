@@ -2173,5 +2173,380 @@ This pattern appears in several Linked List interview problems.
 * This is a classic Linked List interview problem that demonstrates pointer manipulation and in-place list reordering.
 
 ---
+# 🚀 MyCoding - Data Structures & Algorithms in Java
+
+# 🧠 Strategy 7: Reverse Between
+
+> ⚠️ **Advanced Interview Question**
+
+This is one of the most challenging Linked List interview problems because it requires careful pointer manipulation without creating new nodes or modifying node values.
+
+Instead of reversing the entire list, you only reverse a **specific portion** of the linked list while keeping the remaining nodes unchanged.
+
+A good practice is to draw the linked list on paper and trace each pointer movement before writing the code.
+
+---
+
+# 📖 Problem Statement
+
+Given a singly linked list, reverse the nodes between positions **m** and **n** (inclusive).
+
+* The positions are **0-indexed**.
+* Only rearrange the **nodes**, not their values.
+* Modify the linked list **in-place**.
+
+> **Note:** The linked list does **not** have a tail pointer, making the implementation slightly easier.
+
+---
+
+# 📌 Method Signature
+
+```java
+public void reverseBetween(int m, int n)
+```
+
+---
+
+# 🎯 Constraints
+
+* Do not create a new linked list.
+* Do not modify node values.
+* Reverse only the specified portion.
+* Do not use arrays or additional data structures.
+* A limited number of helper nodes (such as a dummy node) is allowed.
+
+---
+
+# 💡 Example
+
+### Input
+
+```text
+Linked List
+
+1 → 2 → 3 → 4 → 5
+
+m = 1
+n = 3
+```
+
+### Reverse Portion
+
+```text
+2 → 3 → 4
+```
+
+### Output
+
+```text
+1 → 4 → 3 → 2 → 5
+```
+
+Only the nodes between index **1** and **3** are reversed.
+
+---
+
+# ❓ Why Not Swap Values?
+
+A common mistake is to swap node values.
+
+Example
+
+```text
+1 → 2 → 3 → 4 → 5
+```
+
+Swapping values changes the data, not the node positions.
+
+The interviewer expects you to manipulate **next pointers**, not node values.
+
+---
+
+# 💡 Recommended Approach
+
+The easiest approach is to divide the list into **three parts**:
+
+```text
+Before Reverse
+
+↓
+
+Nodes to Reverse
+
+↓
+
+After Reverse
+```
+
+For example,
+
+```text
+1 → 2 → 3 → 4 → 5
+
+m = 1
+n = 3
+```
+
+Break it into
+
+```text
+1
+
+↓
+
+2 → 3 → 4
+
+↓
+
+5
+```
+
+Reverse only the middle portion and reconnect all three sections.
+
+---
+
+# 🖼 Visualization
+
+Original List
+
+```text
+1 → 2 → 3 → 4 → 5
+```
+
+Reverse
+
+```text
+2 → 3 → 4
+```
+
+Becomes
+
+```text
+4 → 3 → 2
+```
+
+Reconnect
+
+```text
+1 → 4 → 3 → 2 → 5
+```
+
+---
+
+# 💻 Java Solution
+
+```java
+public void reverseBetween(int m, int n) {
+
+    if (head == null) return;
+
+    Node dummy = new Node(0);
+    dummy.next = head;
+    Node prev = dummy;
+
+    for (int i = 0; i < m; i++) {
+        prev = prev.next;
+    }
+
+    Node current = prev.next;
+
+    for (int i = 0; i < n - m; i++) {
+
+        Node temp = current.next;
+
+        current.next = temp.next;
+
+        temp.next = prev.next;
+
+        prev.next = temp;
+    }
+
+    head = dummy.next;
+}
+```
+
+---
+
+# ⚙️ Algorithm
+
+1. Create a dummy node before the head.
+2. Move `prev` to the node just before index **m**.
+3. Let `current` point to the first node of the section to reverse.
+4. Repeatedly remove the next node and insert it immediately after `prev`.
+5. Continue until the section is reversed.
+6. Update the head using the dummy node.
+
+---
+
+# 📊 Dry Run
+
+Input
+
+```text
+1 → 2 → 3 → 4 → 5
+
+m = 1
+n = 3
+```
+
+Iteration 1
+
+```text
+1 → 3 → 2 → 4 → 5
+```
+
+Iteration 2
+
+```text
+1 → 4 → 3 → 2 → 5
+```
+
+Final Output
+
+```text
+1 → 4 → 3 → 2 → 5
+```
+
+---
+
+# ⚠️ Edge Cases
+
+### Reverse Entire List
+
+Input
+
+```text
+1 → 2 → 3 → 4
+
+m = 0
+n = 3
+```
+
+Output
+
+```text
+4 → 3 → 2 → 1
+```
+
+---
+
+### Reverse Single Node
+
+Input
+
+```text
+1 → 2 → 3
+
+m = 1
+n = 1
+```
+
+Output
+
+```text
+1 → 2 → 3
+```
+
+No changes are required.
+
+---
+
+### Reverse From Head
+
+Input
+
+```text
+1 → 2 → 3 → 4
+
+m = 0
+n = 2
+```
+
+Output
+
+```text
+3 → 2 → 1 → 4
+```
+
+---
+
+### Reverse Till Last Node
+
+Input
+
+```text
+1 → 2 → 3 → 4 → 5
+
+m = 2
+n = 4
+```
+
+Output
+
+```text
+1 → 2 → 5 → 4 → 3
+```
+
+---
+
+# ⏱ Time Complexity
+
+```text
+O(n)
+```
+
+The linked list is traversed only once.
+
+---
+
+# 💾 Space Complexity
+
+```text
+O(1)
+```
+
+Only a few pointer variables are used.
+
+---
+
+# 📊 Complexity Summary
+
+| Operation        | Complexity |
+| ---------------- | ---------- |
+| Time Complexity  | **O(n)**   |
+| Space Complexity | **O(1)**   |
+
+---
+
+# 📌 Interview Tip
+
+Whenever you hear questions like:
+
+* Reverse a portion of a linked list.
+* Reverse between two positions.
+* Reverse nodes without changing values.
+* Reverse a sublist in-place.
+
+Think about:
+
+* **Dummy Node**
+* **Pointer Manipulation**
+* **Head Insertion Technique**
+
+This is one of the most frequently asked Linked List interview patterns.
+
+---
+
+# 🎓 Key Takeaways
+
+* Reverse only the required portion of the list.
+* Never swap node values.
+* Rearrange node pointers instead.
+* A dummy node simplifies handling when the reversal starts at the head.
+* The Head Insertion Technique allows the reversal to be completed in one traversal.
+* This is a classic pointer manipulation problem commonly asked in coding interviews.
+
+---
+
 
 

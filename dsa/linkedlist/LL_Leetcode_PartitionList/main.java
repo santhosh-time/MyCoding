@@ -1,6 +1,6 @@
 package dsa.linkedlist.LL_Leetcode_PartitionList;
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         LinkedList myLinkedList;
 

@@ -24,6 +24,14 @@ public class LinkedList {
         length = 0;
     }
 
+    public Node getHead() {
+        return head;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
     public void append(int value) {
         Node newNode = new Node(value);
         if (head == null) {

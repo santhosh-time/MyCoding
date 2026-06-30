@@ -19,6 +19,14 @@ public class LinkedList {
         length = 1;
     }
 
+    public Node getHead() {
+        return head;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
     // Empty
     public void makeEmpty() {
         head = null;
